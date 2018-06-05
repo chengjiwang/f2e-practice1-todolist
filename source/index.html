@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist | f2e</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name='description' content='六角西餐廳,吃一次就無法忘懷的好滋味。' />
+	<meta property="og:title" content="吃一次就無法忘懷的好滋味  | 六角西餐廳" />
+	<meta property="og:description" content="六角西餐廳,吃一次就無法忘懷的好滋味。">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.hexrestaurant.com/" />
+	<meta property="og:image" content="" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="stylesheets/all.css">
+</head>
+<body>
+	<header class="header container">
+    <ul id="">
+      <li><a href="#" class="active">My Tasks</a></li>
+      <li><a href="#">In Progress</a></li>
+      <li><a href="#">Completed</a></li>
+    </ul>		
+	</header>
+	<main class="main container">
+		<div class="edit-block">
+			<input type="text" placeholder="+ Add Task" class="add-todo">
+		</div>
+		<div class="todo-list">
+			<ul>
+				<li>
+					<div class="d-flex">
+						<div class="form-check">
+							<input type="checkbox" id="a1">
+							<label class="list-text" for="a1">Type Something Here…</label>
+							<div class="status">
+								<button><i class="far fa-calendar-alt"></i><span>6/13</span></button>
+								<button><i class="far fa-file"></i></button>
+								<button><i class="far fa-comment-dots"></i></button>
+							</div>
+						</div>
+						<div class="form-edit">
+							<button><i class="far fa-star"></i></button>
+							<button><i class="far fa-edit"></i></button>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="d-flex">
+						<div class="form-check">
+							<input type="checkbox">
+							<label for="">Type Something Here…</label>
+							<div class="status">
+								<button><i class="far fa-calendar-alt"></i><span>6/13</span></button>
+								<button><i class="far fa-file"></i></button>
+								<button><i class="far fa-comment-dots"></i></button>
+							</div>
+						</div>
+						<div class="form-edit">
+							<button><i class="far fa-star"></i></button>
+							<button><i class="far fa-edit"></i></button>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="remaining">
+				<span>4 tasks left</span>
+			</div>
+		</div>	
+	</main>
+	
+
+	<script src="javascripts/vendor.js"></script>
+	<script src="javascripts/all.js"></script>
+</body>
+
+<!-- https://hexschool.github.io/THE_F2E_Design/todolist/#artboard4 -->
+</html>

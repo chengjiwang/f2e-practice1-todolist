@@ -1,0 +1,116 @@
+body, html {   
+  font-family: "Microsoft JhengHei", "Segoe UI", sans-serif; 
+}
+*,*:before,*:after{
+	box-sizing: border-box;
+}
+ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+.clearfix:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+.container {
+	margin : 0 auto;
+}
+@include pad {
+	.container {
+			width: 750px;
+	}
+}
+@include desktop {
+	.container {
+			width: 970px;
+	}
+}
+
+.header {
+	background: $header-bg;
+  ul {
+		display: flex;
+		// justify-content: space-between;
+		margin: 0 auto;
+		max-width: 660px;
+	}
+	li {
+		width: 220px;
+		text-align: center;
+	}
+	a {
+		display: block;
+		padding: 1em;
+		text-decoration: none;
+		color: $link-color;
+    border-bottom: 4px solid transparent;
+		&:hover {
+			color: $link-hover-color;
+			border-bottom: 4px solid $link-hover-decoration;
+		}
+	}
+}
+.main {
+	background: $main-bg;
+	padding: 15px;
+}
+.edit-block{
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 2.3% 0;
+	.add-todo {
+		width: 100%;
+		padding: 15px 15px 15px 30px;
+		border: 2px solid #C8C8C8;
+		border-radius: 5px;
+		font-size: $main-font-size;
+	}
+}
+.todo-list {
+	margin: 0 auto;
+	max-width: 600px;
+	li {
+		background: $list-hover-bg;
+		padding: 20px 30px;
+		margin-bottom: 15px;
+	}
+	.d-flex {
+		display: flex;
+		justify-content: space-between;
+	}
+  .form-check {
+		justify-content: flex-start;
+	}
+	input[type=checkbox]{
+		transform: scale(2); 
+		margin-right: 5px;
+	}
+	.list-text {
+		font-size: $main-font-size;
+	}
+	.status {
+		margin: 15px 0 0 15px;
+		button {
+			@include btn-icon;
+		}
+		span {
+			margin-left: 5px;
+		}
+	}
+	.form-edit {
+		justify-content: flex-end;
+		button {
+			@include btn-icon;
+		}
+		i {
+			font-size: 20px;
+		}
+	}
+	
+}
+
