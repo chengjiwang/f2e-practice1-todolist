@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>todolist | f2e</title>
+	<title>todolist</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name='description' content='六角西餐廳,吃一次就無法忘懷的好滋味。' />
-	<meta property="og:title" content="吃一次就無法忘懷的好滋味  | 六角西餐廳" />
-	<meta property="og:description" content="六角西餐廳,吃一次就無法忘懷的好滋味。">
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://www.hexrestaurant.com/" />
-	<meta property="og:image" content="" />
+	<meta name='description' content='todolist' />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	<link rel="stylesheet" href="stylesheets/all.css">
 </head>
 <body>
+<div id="app">
 	<header class="header container">
     <ul id="">
       <li><a href="#" class="active">My Tasks</a></li>
@@ -23,8 +19,44 @@
     </ul>		
 	</header>
 	<main class="main container">
+		<div class="add-block">
+			<input type="text" placeholder="+ Add Task" class="add-todo" @focus="">
+		</div>
 		<div class="edit-block">
-			<input type="text" placeholder="+ Add Task" class="add-todo">
+			<div class="edit-head">
+				<div class="form-check">
+					<input type="checkbox">
+					<input type="text" placeholder="Type Something Here…">
+				</div>
+				<div class="form-edit">
+					<button><i class="far fa-star"></i></button>
+					<button><i class="far fa-edit"></i></button>
+				</div>
+			</div>
+			<div class="edit-content">
+				<ul>
+					<li>
+						<button class="btn-status"><i class="far fa-calendar-alt"></i><span>Deadline</span></button>
+						<div class="choose-date">
+							<input type="date" name="todo_date">
+							<input type="time" name="todo_time">
+						</div>	
+					</li>
+					<li>
+						<button class="btn-status"><i class="far fa-file"></i><span>File</span></button>
+						<button class="choose-file"><i class="fas fa-plus"></i></button>
+					</li>
+					<li>
+						<button class="btn-status"><i class="far fa-comment-dots"></i><span>Comment</span></button>
+						<textarea name="message" class="comment" placeholder="Type your memo here…">	
+						</textarea>
+					</li>
+				</ul>
+				<div class="edit-submit">
+					<button class="pure-button btn-cancel">Cancel</button>
+					<button class="pure-button btn-send">Add Task</button>
+				</div>
+			</div>
 		</div>
 		<div class="todo-list">
 			<ul>
@@ -45,11 +77,11 @@
 						</div>
 					</div>
 				</li>
-				<li>
+				<!-- <li>
 					<div class="d-flex">
 						<div class="form-check">
 							<input type="checkbox">
-							<label for="">Type Something Here…</label>
+							<label class="list-text" for="">Type Something Here…</label>
 							<div class="status">
 								<button><i class="far fa-calendar-alt"></i><span>6/13</span></button>
 								<button><i class="far fa-file"></i></button>
@@ -61,16 +93,15 @@
 							<button><i class="far fa-edit"></i></button>
 						</div>
 					</div>
-				</li>
+				</li> -->
 			</ul>
 			<div class="remaining">
 				<span>4 tasks left</span>
 			</div>
 		</div>	
 	</main>
-	
-
-	<script src="javascripts/vendor.js"></script>
+</div>
+	<script src="javascripts/vue.js"></script>
 	<script src="javascripts/all.js"></script>
 </body>
 

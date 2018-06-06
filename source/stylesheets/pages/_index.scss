@@ -42,6 +42,7 @@ img {
 	li {
 		width: 220px;
 		text-align: center;
+		font-size: $main-font-size;
 	}
 	a {
 		display: block;
@@ -59,7 +60,7 @@ img {
 	background: $main-bg;
 	padding: 15px;
 }
-.edit-block{
+.add-block{
 	margin: 0 auto;
 	max-width: 600px;
 	padding: 2.3% 0;
@@ -71,6 +72,96 @@ img {
 		font-size: $main-font-size;
 	}
 }
+.edit-block {
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 2.3% 0;
+}
+.edit-block .edit-head {
+	display: flex;
+	justify-content: space-between;
+	background: $list-bg;
+	padding: 20px 30px;
+  .form-check {
+		justify-content: flex-start;
+		input[type="text"]{
+			width: 400px;
+			background-color: transparent;
+			border-width: 0;
+			font-size: 24px;
+			outline: none;
+		}
+	}
+	input[type="checkbox"]{
+		transform: scale(2); 
+		margin-right: 5px;
+	}
+	.list-text {
+		font-size: $main-font-size;
+	}
+	.form-edit {
+		justify-content: flex-end;
+		button {
+			@include btn-icon-style;
+		}
+		i {
+			font-size: 20px;
+		}
+	}
+}
+
+.edit-block .edit-content {
+	padding: 20px 30px;
+	background: $list-bg;
+	border-top: 1px solid black;
+	.btn-status {
+		@include btn-icon-style;
+		display: block;
+		span {
+			margin-left: 5px;
+			font-size: $sub-font-size;
+			font-weight: bold;
+		}
+	}
+	.choose-date {
+		margin: 10px 25px;
+		input {
+			margin-right: 10px;
+		}
+	}
+	.choose-file {
+		margin: 10px 25px;
+		padding: 5px 10px;
+		background: #C8C8C8;
+		border-radius: 2px;
+		i {
+			color: #ffffff;
+		}
+	}
+	.comment {
+		margin: 10px 25px;
+		padding: 10px;
+		width: 90%;
+		height: 100px;
+	}
+	.edit-submit {
+		margin: 10px 25px;
+		text-align: right;
+		button {
+			margin-right: 15px;
+			font-size: $main-font-size;
+		}
+	}
+}
+// .edit-submit {
+// 	button {
+// 		width: 40%;
+// 		font-size: $main-font-size;
+// 	}
+// }
+
+
+
 .todo-list {
 	margin: 0 auto;
 	max-width: 600px;
@@ -96,7 +187,7 @@ img {
 	.status {
 		margin: 15px 0 0 15px;
 		button {
-			@include btn-icon;
+			@include btn-icon-style;
 		}
 		span {
 			margin-left: 5px;
@@ -105,7 +196,7 @@ img {
 	.form-edit {
 		justify-content: flex-end;
 		button {
-			@include btn-icon;
+			@include btn-icon-style;
 		}
 		i {
 			font-size: 20px;
