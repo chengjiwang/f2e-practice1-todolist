@@ -13,20 +13,29 @@
 <div id="app">
 	<header class="header container">
     <ul id="">
-      <li><a href="#" class="active">My Tasks</a></li>
-      <li><a href="#">In Progress</a></li>
-      <li><a href="#">Completed</a></li>
+			<li><a href="#" :class="{active: visibility == 'all'}"
+				@click="visibility = 'all'">
+				My Tasks</a>
+			</li>
+			<li><a href="#" :class="{active: visibility == 'progress'}"
+				@click="visibility = 'progress'">
+				In Progress</a>
+			</li>
+			<li><a href="#" :class="{active: visibility == 'completed'}"
+				@click="visibility = 'completed'">
+				Completed</a>
+			</li>
     </ul>		
 	</header>
 	<main class="main container">
-		<div class="add-block">
-			<input type="text" placeholder="+ Add Task" class="add-todo" @focus="">
+		<div class="add-block" v-if="!editmode">
+			<input type="text" placeholder="+ Add Task" class="add-todo" @focus="editmode = true">
 		</div>
-		<div class="edit-block">
+		<div class="edit-block" v-if="editmode">
 			<div class="edit-head">
 				<div class="form-check">
 					<input type="checkbox">
-					<input type="text" placeholder="Type Something Here…">
+					<input type="text" v-model="newTodo" placeholder="Type Something Here…">
 				</div>
 				<div class="form-edit">
 					<button><i class="far fa-star"></i></button>
@@ -53,18 +62,20 @@
 					</li>
 				</ul>
 				<div class="edit-submit">
-					<button class="pure-button btn-cancel">Cancel</button>
-					<button class="pure-button btn-send">Add Task</button>
+					<button class="pure-button btn-cancel" @click="editmode=false">Cancel</button>
+					<button class="pure-button btn-send" @click="addTodo">Add Task</button>
 				</div>
 			</div>
 		</div>
 		<div class="todo-list">
 			<ul>
-				<li>
+				<li v-for="item in filterTodo">
 					<div class="d-flex">
 						<div class="form-check">
-							<input type="checkbox" id="a1">
-							<label class="list-text" for="a1">Type Something Here…</label>
+							<input type="checkbox" :id="item.id" v-model="item.completed">
+							<label class="list-text" :for="item.id" :class="{completed: item.completed}">
+								{{item.title}}
+							</label>
 							<div class="status">
 								<button><i class="far fa-calendar-alt"></i><span>6/13</span></button>
 								<button><i class="far fa-file"></i></button>
@@ -77,23 +88,6 @@
 						</div>
 					</div>
 				</li>
-				<!-- <li>
-					<div class="d-flex">
-						<div class="form-check">
-							<input type="checkbox">
-							<label class="list-text" for="">Type Something Here…</label>
-							<div class="status">
-								<button><i class="far fa-calendar-alt"></i><span>6/13</span></button>
-								<button><i class="far fa-file"></i></button>
-								<button><i class="far fa-comment-dots"></i></button>
-							</div>
-						</div>
-						<div class="form-edit">
-							<button><i class="far fa-star"></i></button>
-							<button><i class="far fa-edit"></i></button>
-						</div>
-					</div>
-				</li> -->
 			</ul>
 			<div class="remaining">
 				<span>4 tasks left</span>
@@ -104,6 +98,4 @@
 	<script src="javascripts/vue.js"></script>
 	<script src="javascripts/all.js"></script>
 </body>
-
-<!-- https://hexschool.github.io/THE_F2E_Design/todolist/#artboard4 -->
 </html>
