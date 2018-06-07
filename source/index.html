@@ -34,7 +34,6 @@
 		<div class="edit-block" v-if="editmode">
 			<div class="edit-head">
 				<div class="form-check">
-					<input type="checkbox">
 					<input type="text" v-model="newTodo" placeholder="Type Something Here…">
 				</div>
 				<div class="form-edit">
@@ -47,29 +46,29 @@
 					<li>
 						<button class="btn-status"><i class="far fa-calendar-alt"></i><span>Deadline</span></button>
 						<div class="choose-date">
-							<input type="date" name="todo_date">
-							<input type="time" name="todo_time">
+							<input type="date" name="todo_date" v-model="deadline">
 						</div>	
 					</li>
-					<li>
+					<!-- <li>
 						<button class="btn-status"><i class="far fa-file"></i><span>File</span></button>
 						<button class="choose-file"><i class="fas fa-plus"></i></button>
-					</li>
+					</li> -->
 					<li>
 						<button class="btn-status"><i class="far fa-comment-dots"></i><span>Comment</span></button>
-						<textarea name="message" class="comment" placeholder="Type your memo here…">	
+						<textarea name="message" class="comment" v-model="comment" placeholder="Type your memo here…">	
 						</textarea>
 					</li>
 				</ul>
 				<div class="edit-submit">
-					<button class="pure-button btn-cancel" @click="editmode=false">Cancel</button>
+					<button class="pure-button btn-cancel" @click="cancelTodo">Cancel</button>
 					<button class="pure-button btn-send" @click="addTodo">Add Task</button>
+					<button class="pure-button btn-send" @click="updateTodo">Save</button>
 				</div>
 			</div>
 		</div>
 		<div class="todo-list">
 			<ul>
-				<li v-for="item in filterTodo">
+				<li v-for="(item,key) in filterTodo">
 					<div class="d-flex">
 						<div class="form-check">
 							<input type="checkbox" :id="item.id" v-model="item.completed">
@@ -77,20 +76,20 @@
 								{{item.title}}
 							</label>
 							<div class="status">
-								<button><i class="far fa-calendar-alt"></i><span>6/13</span></button>
-								<button><i class="far fa-file"></i></button>
-								<button><i class="far fa-comment-dots"></i></button>
+								<button><i class="far fa-calendar-alt"></i><span>{{item.deadline}}</span></button>
+								<!-- <button><i class="far fa-file"></i></button> -->
+								<button><i class="far fa-comment-dots"></i><span>{{item.comment}}</span></button>
 							</div>
 						</div>
 						<div class="form-edit">
 							<button><i class="far fa-star"></i></button>
-							<button><i class="far fa-edit"></i></button>
+							<button @click="editTodo(item,key)"><i class="far fa-edit"></i></button>
 						</div>
 					</div>
 				</li>
 			</ul>
 			<div class="remaining">
-				<span>4 tasks left</span>
+				<span>{{remaining}} tasks left</span>
 			</div>
 		</div>	
 	</main>
