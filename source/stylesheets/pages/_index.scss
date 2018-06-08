@@ -85,7 +85,7 @@ img {
   .form-check {
 		justify-content: flex-start;
 		input[type="text"]{
-			width: 400px;
+			width: 500px;
 			background-color: transparent;
 			border-width: 0;
 			font-size: 24px;
@@ -99,15 +99,15 @@ img {
 	.list-text {
 		font-size: $main-font-size;
 	}
-	.form-edit {
-		justify-content: flex-end;
-		button {
-			@include btn-icon-style;
-		}
-		i {
-			font-size: 20px;
-		}
-	}
+	// .form-edit {
+	// 	justify-content: flex-end;
+	// 	button {
+	// 		@include btn-icon-style;
+	// 	}
+	// 	i {
+	// 		font-size: 20px;
+	// 	}
+	// }
 }
 
 .edit-block .edit-content {
@@ -162,6 +162,9 @@ img {
 		padding: 20px 30px;
 		margin-bottom: 15px;
 	}
+	.important-bg {
+		background: $list-hover-bg;
+	}
 	.d-flex {
 		display: flex;
 		justify-content: space-between;
@@ -191,10 +194,14 @@ img {
 	.form-edit {
 		justify-content: flex-end;
 		button {
+			cursor: pointer;
 			@include btn-icon-style;
 		}
 		i {
 			font-size: 20px;
+		}
+		.important-star {
+			color: $start-active-color;
 		}
 	}
 	

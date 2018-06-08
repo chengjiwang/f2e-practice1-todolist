@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>todolist</title>
+	<title>Todolist</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name='description' content='todolist' />
@@ -28,18 +28,18 @@
     </ul>		
 	</header>
 	<main class="main container">
-		<div class="add-block" v-if="!editmode">
-			<input type="text" placeholder="+ Add Task" class="add-todo" @focus="editmode = true">
+		<div class="add-block" v-if="!isNewTodo">
+			<input type="text" placeholder="+ Add Task" class="add-todo" @focus="isNewTodo = true">
 		</div>
-		<div class="edit-block" v-if="editmode">
+		<div class="edit-block" v-if="isNewTodo">
 			<div class="edit-head">
 				<div class="form-check">
 					<input type="text" v-model="newTodo" placeholder="Type Something Here…">
 				</div>
-				<div class="form-edit">
+				<!-- <div class="form-edit">
 					<button><i class="far fa-star"></i></button>
 					<button><i class="far fa-edit"></i></button>
-				</div>
+				</div> -->
 			</div>
 			<div class="edit-content">
 				<ul>
@@ -61,14 +61,14 @@
 				</ul>
 				<div class="edit-submit">
 					<button class="pure-button btn-cancel" @click="cancelTodo">Cancel</button>
-					<button class="pure-button btn-send" @click="addTodo">Add Task</button>
-					<button class="pure-button btn-send" @click="updateTodo">Save</button>
+					<button class="pure-button btn-send" v-if="editMode !== true" @click="addTodo">Add Task</button>
+					<button class="pure-button btn-send" v-if="editMode == true" @click="updateTodo">Save</button>					
 				</div>
 			</div>
 		</div>
 		<div class="todo-list">
 			<ul>
-				<li v-for="(item,key) in filterTodo">
+				<li v-for="(item,key) in filterTodo" :class="{'important-bg': item.stared == true}">
 					<div class="d-flex">
 						<div class="form-check">
 							<input type="checkbox" :id="item.id" v-model="item.completed">
@@ -82,8 +82,12 @@
 							</div>
 						</div>
 						<div class="form-edit">
-							<button><i class="far fa-star"></i></button>
-							<button @click="editTodo(item,key)"><i class="far fa-edit"></i></button>
+							<button @click="updateStar(item, !item.stared)">
+								<i class="far fa-star" title="設為重要" v-if="item.stared !== true"></i>
+								<i class="fas fa-star important-star" title="取消重要" v-else></i>
+							</button>
+							<button @click="editTodo(item,key)" title="編輯"><i class="far fa-edit"></i></button>
+							<button @click="deleteTodo(key)" title="刪除"><i class="far fa-trash-alt"></i></button>
 						</div>
 					</div>
 				</li>
