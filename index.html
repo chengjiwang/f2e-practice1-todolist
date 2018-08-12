@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Todolist</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name='description' content='todolist' />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="stylesheets/all.css">
+</head>
+<body>
+<div id="app">
+	<header class="header container">
+    <ul id="">
+			<li><a href="#" :class="{active: visibility == 'all'}"
+				@click="visibility = 'all'">
+				My Tasks</a>
+			</li>
+			<li><a href="#" :class="{active: visibility == 'progress'}"
+				@click="visibility = 'progress'">
+				In Progress</a>
+			</li>
+			<li><a href="#" :class="{active: visibility == 'completed'}"
+				@click="visibility = 'completed'">
+				Completed</a>
+			</li>
+    </ul>		
+	</header>
+	<main class="main container">
+		<div class="add-block" v-if="!isNewTodo">
+			<input type="text" placeholder="+ Add Task" class="add-todo" @focus="isNewTodo = true">
+		</div>
+		<div class="edit-block" v-if="isNewTodo">
+			<div class="edit-head">
+				<div class="form-check">
+					<input type="text" v-model="newTodo" placeholder="Type Something Here…">
+				</div>
+				<!-- <div class="form-edit">
+					<button><i class="far fa-star"></i></button>
+					<button><i class="far fa-edit"></i></button>
+				</div> -->
+			</div>
+			<div class="edit-content">
+				<ul>
+					<li>
+						<button class="btn-status"><i class="far fa-calendar-alt"></i><span>Deadline</span></button>
+						<div class="choose-date">
+							<input type="date" name="todo_date" v-model="deadline">
+						</div>	
+					</li>
+					<!-- <li>
+						<button class="btn-status"><i class="far fa-file"></i><span>File</span></button>
+						<button class="choose-file"><i class="fas fa-plus"></i></button>
+					</li> -->
+					<li>
+						<button class="btn-status"><i class="far fa-comment-dots"></i><span>Comment</span></button>
+						<textarea name="message" class="comment" v-model="comment" placeholder="Type your memo here…">	
+						</textarea>
+					</li>
+				</ul>
+				<div class="edit-submit">
+					<button class="pure-button btn-cancel" @click="cancelTodo">Cancel</button>
+					<button class="pure-button btn-send" v-if="editMode !== true" @click="addTodo">Add Task</button>
+					<button class="pure-button btn-send" v-if="editMode == true" @click="updateTodo">Save</button>					
+				</div>
+			</div>
+		</div>
+		<div class="todo-list">
+			<ul>
+				<li v-for="(item,key) in filterTodo" :class="{'important-bg': item.stared == true}">
+					<div class="d-flex">
+						<div class="form-check">
+							<input type="checkbox" :id="item.id" v-model="item.completed">
+							<label class="list-text" :for="item.id" :class="{completed: item.completed}">
+								{{item.title}}
+							</label>
+							<div class="status">
+								<button><i class="far fa-calendar-alt"></i><span>{{item.deadline}}</span></button>
+								<!-- <button><i class="far fa-file"></i></button> -->
+								<button><i class="far fa-comment-dots"></i><span>{{item.comment}}</span></button>
+							</div>
+						</div>
+						<div class="form-edit">
+							<button @click="updateStar(item, !item.stared)">
+								<i class="far fa-star" title="設為重要" v-if="item.stared !== true"></i>
+								<i class="fas fa-star important-star" title="取消重要" v-else></i>
+							</button>
+							<button @click="editTodo(item,key)" title="編輯"><i class="far fa-edit"></i></button>
+							<button @click="deleteTodo(key)" title="刪除"><i class="far fa-trash-alt"></i></button>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="remaining">
+				<span>{{remaining}} tasks left</span>
+			</div>
+		</div>	
+	</main>
+</div>
+	<script src="javascripts/vue.js"></script>
+	<script src="javascripts/all.js"></script>
+</body>
+</html>
